@@ -4,7 +4,7 @@
 ;;
 ;; Author: Ruslan Spivak <ruslan.spivak@gmail.com>
 ;; URL: http://github.com/rspivak/httpcode.el
-;; Version: 0.1
+;; Version: 0.2
 ;;
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -18,16 +18,16 @@
 ;;
 ;;; Commentary:
 ;;
-;; Explain the meaning of an HTTP status code. Copy httpcode.el to your
+;; Explain the meaning of an HTTP status code.  Copy httpcode.el to your
 ;; load-path and add to your .emacs:
 ;;
 ;;   (require 'httpcode)
 ;;
 ;; Then run it with M-x hc
 ;;
-;;; Code goes here:
+;;; Code:
 
-(defconst http-codes
+(defvar http-codes
   '((100 ("Continue" "Request received, please continue"))
     (101 ("Switching Protocols"
           "Switching to new protocol; obey Upgrade header"))
@@ -85,12 +85,12 @@
    (504 ("Gateway Timeout"
          "The gateway server did not receive a timely response"))
    (505 ("HTTP Version Not Supported" "Cannot fulfill request."))
-   (511 ("Network Authentication Required" "The client needs to authenticate to gain network access. Intended for use by intercepting proxies used to control access to the network (e.g. 'captive portals' used to require agreement to Terms of Service before granting full Internet access via a Wi-Fi hotspot)."))
-   ))
+   (511 ("Network Authentication Required" "The client needs to authenticate to gain network access. Intended for use by intercepting proxies used to control access to the network (e.g. 'captive portals' used to require agreement to Terms of Service before granting full Internet access via a Wi-Fi hotspot).")))
+  "The list of HTTP codes recognized by this script.")
 
 ;;;###autoload
 (defun hc (code)
-  "Display the meaning of an HTTP status code"
+  "Display the meaning of the specified HTTP status CODE."
   (interactive "nEnter HTTP code: ")
   (let ((found (assoc code http-codes)))
     (if found
