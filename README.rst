@@ -27,6 +27,14 @@ Alternately use `Marmalade <http://marmalade-repo.org>`_:
 
 Then run the command with **M-x hc**
 
+To add custom HTTP codes, like the ones used by Cloudflare:
+
+::
+
+   (setq http-codes (append '(
+     (522 ("Connection timed out" "Error 522 occurs when Cloudflare times out contacting the origin web server."))
+     (523 ("Origin is unreachable" "Error 523 occurs when Cloudflare cannot contact your origin web server."))) http-codes))
+
 Usage
 -----
 
