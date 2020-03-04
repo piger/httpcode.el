@@ -31,9 +31,9 @@ To add custom HTTP codes, like the ones used by Cloudflare:
 
 ::
 
-   (setq http-codes (append '(
-     (522 ("Connection timed out" "Error 522 occurs when Cloudflare times out contacting the origin web server."))
-     (523 ("Origin is unreachable" "Error 523 occurs when Cloudflare cannot contact your origin web server."))) http-codes))
+   (setq custom-http-codes
+     '((522 ("Connection timed out" "Error 522 occurs when Cloudflare times out contacting the origin web server."))
+      (523 ("Origin is unreachable" "Error 523 occurs when Cloudflare cannot contact your origin web server."))))
 
 Usage
 -----

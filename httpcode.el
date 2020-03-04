@@ -27,7 +27,7 @@
 ;;
 ;;; Code:
 
-(defvar http-codes
+(defconst http-codes
   '((100 ("Continue" "Request received, please continue"))
     (101 ("Switching Protocols"
           "Switching to new protocol; obey Upgrade header"))
@@ -88,11 +88,15 @@
    (511 ("Network Authentication Required" "The client needs to authenticate to gain network access. Intended for use by intercepting proxies used to control access to the network (e.g. 'captive portals' used to require agreement to Terms of Service before granting full Internet access via a Wi-Fi hotspot).")))
   "The list of HTTP codes recognized by this script.")
 
+(defvar custom-http-codes
+  '()
+  "A list of custom HTTP codes recognized by this script.")
+
 ;;;###autoload
 (defun hc (code)
   "Display the meaning of the specified HTTP status CODE."
   (interactive "nEnter HTTP code: ")
-  (let ((found (assoc code http-codes)))
+  (let ((found (assoc code (append http-codes custom-http-codes))))
     (if found
         (let ((description (car (cdr found))))
           (message
